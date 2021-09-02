@@ -6,6 +6,7 @@ Future fetchServerData(url) async {
   try {
     AppDio.Response response = await apiFetchdio().get(url);
     var data = Convert.jsonDecode(response.data);
+    print(data);
     return data;
   } on AppDio.DioError catch (e) {
     print(e);

@@ -1,18 +1,12 @@
-class UserModel {
-  String? userName;
-  String? userEmail;
-  dynamic walletBalance;
-  dynamic phoneNumber;
+class ArtistModel {
+  String userName;
+  String userId;
+  ArtistModel({this.userName, this.userId});
 
-  UserModel(
-      {this.userName, this.userEmail, this.walletBalance, this.phoneNumber});
-
-  factory UserModel.fromJson(Map data) {
-    return UserModel(
-      userEmail: data['email'],
+  factory ArtistModel.fromJson(Map data) {
+    return ArtistModel(
       userName: data['name'],
-      walletBalance: data['wallet_balance'],
-      phoneNumber: data['phone'],
+      userId: data['id'],
     );
   }
 }

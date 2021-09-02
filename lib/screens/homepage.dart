@@ -1,10 +1,10 @@
+import 'package:activeedgemusic/api/api.dart';
+import 'package:activeedgemusic/components/apcards.dart';
 import 'package:activeedgemusic/util/appcolor.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  MyHomePage({Key key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -15,7 +15,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
         backgroundColor: Colors.white,
         elevation: 0,
         leading: Icon(
@@ -58,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Container(
                         child: TabBar(
                           labelColor: appColor2,
+                          indicatorColor: appColor1,
                           unselectedLabelColor: appColor1,
                           tabs: [
                             Tab(text: 'Artist'),
@@ -74,16 +74,30 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: TabBarView(
                             children: <Widget>[
                               Container(
-                                child: Center(
-                                  child: Text('Display Tab 3',
-                                      style: TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold)),
+                                child: FutureBuilder(
+                                  future: fetchServerData(
+                                      "users?_start=0&_limit=10"),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return ListView.builder(
+                                        itemCount: snapshot.data.length,
+                                        shrinkWrap: true,
+                                        cacheExtent: 9999,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (context, item) {
+                                          return CustomCards()
+                                              .artistCard(snapshot.data[item]);
+                                        },
+                                      );
+                                    } else {
+                                      return Text("Getting Data");
+                                    }
+                                  },
                                 ),
                               ),
                               Container(
                                 child: Center(
-                                  child: Text('Display Tab 4',
+                                  child: Text('Display Tab 666',
                                       style: TextStyle(
                                           fontSize: 22,
                                           fontWeight: FontWeight.bold)),

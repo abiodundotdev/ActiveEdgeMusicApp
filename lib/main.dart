@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
               bodyText2: GoogleFonts.montserrat(
             color: appColor1,
           ))),
-      home: MyHomePage(title: "title"),
+      home: MyHomePage(),
     );
   }
 }
