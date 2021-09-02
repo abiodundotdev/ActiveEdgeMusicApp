@@ -2,6 +2,7 @@ import 'package:activeedgemusic/api/api.dart';
 import 'package:activeedgemusic/components/apcards.dart';
 import 'package:activeedgemusic/util/appcolor.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);
@@ -85,19 +86,22 @@ class _MyHomePageState extends State<MyHomePage> {
                                         cacheExtent: 9999,
                                         scrollDirection: Axis.horizontal,
                                         itemBuilder: (context, item) {
-                                          return CustomCards()
-                                              .artistCard(snapshot.data[item]);
+                                          return CustomCards().artistCard(
+                                              context, snapshot.data[item]);
                                         },
                                       );
                                     } else {
-                                      return Text("Getting Data");
+                                      return Center(
+                                        child: Lottie.asset(
+                                            "assets/lottie/musicloading.json"),
+                                      );
                                     }
                                   },
                                 ),
                               ),
                               Container(
                                 child: Center(
-                                  child: Text('Display Tab 666',
+                                  child: Text('Albums Loading Please Wait',
                                       style: TextStyle(
                                           fontSize: 22,
                                           fontWeight: FontWeight.bold)),
