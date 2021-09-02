@@ -1,4 +1,5 @@
 import 'package:activeedgemusic/screens/albums.dart';
+import 'package:activeedgemusic/screens/tweets.dart';
 import 'package:activeedgemusic/util/appcolor.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -54,7 +55,7 @@ class CustomCards {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ArtistAlbum(
+                      builder: (context) => ArtistTweets(
                         artistId: data['id'],
                         name: data['name'],
                       ),
@@ -76,11 +77,17 @@ class CustomCards {
             ),
           ),
           Align(
-            child: Text(data['name'].toString(),
-                style: GoogleFonts.montserrat(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                )),
+            child: Container(
+              padding: EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                  color: Colors.white60,
+                  borderRadius: BorderRadius.circular(10.0)),
+              child: Text(data['name'].toString(),
+                  style: GoogleFonts.montserrat(
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
+                  )),
+            ),
           ),
         ],
       ),
